@@ -1,0 +1,27 @@
+{
+  "name": "ra-timecard-autofiller",
+  "version": "1.0.0",
+  "description": "Chrome extension to help RAs fill in the timecard on My Waseda",
+  "type": "module",
+  "build": "tsc && vite build",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NSL-Admin/ra-timecard-autofiller.git"
+  },
+  "author": "Takaaki Toda",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NSL-Admin/ra-timecard-autofiller/issues"
+  },
+  "homepage": "https://github.com/NSL-Admin/ra-timecard-autofiller#readme",
+  "devDependencies": {
+    "@crxjs/vite-plugin": "^1.0.14",
+    "@types/chrome": "^0.0.251",
+    "@types/node": "^20.9.3",
+    "typescript": "^5.2.2",
+    "vite": "^2.9.16"
+  }
+}
