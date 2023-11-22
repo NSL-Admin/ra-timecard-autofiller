@@ -23,4 +23,5 @@ export const manifest = defineManifest({
       run_at: "document_end"
     }
   ],
+  permissions: ["storage"],
 })
