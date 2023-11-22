@@ -14,14 +14,23 @@ export const manifest = defineManifest({
   action: {
     default_icon: "icons/icon-128.png",
     default_title: "RA Timecard Autofiller",
-    default_popup: "src/popup.html"
+  },
+  background: {
+    service_worker: "src/background.ts"
   },
   content_scripts: [
     {
       matches: ["https://www.wpte.waseda.jp/*"],
-      js: ["src/content.ts"],
+      js: ["src/content.ts", "src/bootstrap.esm.min.js"],
+      css: ["src/bootstrap.min.css"],
       run_at: "document_end"
     }
   ],
-  permissions: ["storage"],
+  web_accessible_resources: [
+    {
+      resources: ["src/bootstrap.min.css"],
+      matches: ["https://www.wpte.waseda.jp/*"]
+    }
+  ],
+  permissions: ["activeTab"]
 })
