@@ -68,7 +68,7 @@ chrome.runtime.onMessage.addListener((message: { message: string }) => {
     });
   }
 
-  outerIFrameDocument.querySelector<HTMLButtonElement>("#fillButton")!.onclick = () => {
+  outerIFrameDocument.querySelector<HTMLButtonElement>("#fillButton")!.onclick = async () => {
     const selectTag = outerIFrameDocument.querySelector<HTMLSelectElement>("#selectRAName")!;
     const selectedRAName = selectTag.options[selectTag.selectedIndex]?.text
     if (selectedRAName === undefined) return;
@@ -97,25 +97,19 @@ chrome.runtime.onMessage.addListener((message: { message: string }) => {
         continue;
       }
 
-      // since there is a Javascript event handler that fires when the input field is focused or blurred,
-      // we need to focus the input field first, then set the value, then blur the input field.
+      // fill in each input tag
       // 1. start time
-      const startTimeElement = tableRow.querySelector<HTMLInputElement>(selectorForStartTime)!
-      startTimeElement.focus();
-      startTimeElement.value = record.start_time;
-      startTimeElement.blur();
+      const startTimeInputTag = tableRow.querySelector<HTMLInputElement>(selectorForStartTime)!;
+      await fillInputTag(startTimeInputTag, record.start_time, 10);
       // 2. endtime
-      const EndTimeElement = tableRow.querySelector<HTMLInputElement>(selectorForEndTime)!
-      EndTimeElement.focus();
-      EndTimeElement.value = record.end_time;
-      EndTimeElement.blur();
+      const endTimeInputTag = tableRow.querySelector<HTMLInputElement>(selectorForEndTime)!;
+      await fillInputTag(endTimeInputTag, record.end_time, 10);
       // 3. breaktime
-      const breakTimeElement = tableRow.querySelector<HTMLInputElement>(selectorForBreakTime)!
-      breakTimeElement.focus();
-      breakTimeElement.value = record.break_time;
-      breakTimeElement.blur();
+      const breakTimeInputTag = tableRow.querySelector<HTMLInputElement>(selectorForBreakTime)!;
+      await fillInputTag(breakTimeInputTag, record.break_time, 10);
       // 4. description ( no need to focus and blur )
-      tableRow.querySelector<HTMLInputElement>(selectorForDescription)!.value = record.description;
+      const descriptionInputTag = tableRow.querySelector<HTMLInputElement>(selectorForDescription)!;
+      await fillInputTag(descriptionInputTag, record.description, 0);
 
       lastProcessedDate = parseInt(record.date);
     }
@@ -140,6 +134,20 @@ chrome.runtime.onMessage.addListener((message: { message: string }) => {
       reader.onerror = reject;
       reader.readAsText(file);
     });
+  }
+
+  const fillInputTag = async (inputTag: HTMLInputElement, value: string, pauseTime: number) => {
+    // since there is a Javascript event handler that fires when the input field is focused or blurred,
+    // we need to focus the input field first, then set the value, then blur the input field.
+    inputTag.focus();
+    await sleep(pauseTime);  // wait for the script for focus event to be completed
+    inputTag.value = value;
+    inputTag.blur();
+    await sleep(pauseTime);  // wait for the script for blur event to be completed
+  }
+
+  const sleep = (ms: number) => {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
 })
