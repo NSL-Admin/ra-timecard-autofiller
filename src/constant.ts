@@ -1,7 +1,7 @@
 /*
   * constant.ts
   * --------------
-  * Constant values used in both popup and background scripts.
+  * Constant values that may be used in both popup and background scripts.
 */
 
 export interface RAWorkRecord {
