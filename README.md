@@ -6,7 +6,7 @@
 
 ## インストール
 
-[Chrome Web Store]()（準備中）よりインストールしてください。
+[Chrome Web Store](https://chromewebstore.google.com/detail/ra-timecard-autofiller/cmlgpkjckdgjackdkahmppghikhecajn)よりインストールしてください。
 
 ## 使用方法
 
