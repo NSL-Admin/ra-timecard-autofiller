@@ -18,11 +18,11 @@
   },
   "homepage": "https://github.com/NSL-Admin/ra-timecard-autofiller#readme",
   "devDependencies": {
-    "@crxjs/vite-plugin": "^2.0.0-beta.21",
-    "@types/chrome": "^0.0.251",
-    "@types/node": "^20.9.3",
-    "typescript": "^5.2.2",
-    "vite": "^3.2.3"
+    "@crxjs/vite-plugin": "^2.0.0-beta.28",
+    "@types/chrome": "^0.0.280",
+    "@types/node": "^22.9.0",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8"
