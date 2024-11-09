@@ -4,7 +4,7 @@ export const manifest = defineManifest({
   manifest_version: 3,
   name: 'RA Timecard Autofiller',
   description: 'Help RAs fill in the timecard on MyWaseda',
-  version: '0.1.0',
+  version: '0.1.1',
   icons: {
     16: 'icons/icon-16.png',
     38: 'icons/icon-32.png',
